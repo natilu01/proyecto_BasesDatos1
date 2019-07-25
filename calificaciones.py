@@ -3,7 +3,7 @@ from tkinter import *
 from  tkinter import ttk
 import turtle
 import tkinter as tk
-
+import os
 
 ventana=tk.Tk()
 ventana.title("Calificaciones")
@@ -17,9 +17,13 @@ label.pack()
 
 #funcion para determinar que hace el boton
 def usuario():
-def contraseña():
-def Ingresar():
 	varresult.set("suma="+str(float(vartxt1.get())+float(vartxt2.get())))
+def contraseña():
+	varresult.set("suma="+str(float(vartxt1.get())+float(vartxt2.get())))
+def Ingresar():
+	if  (combo.get())=="PROFESOR":
+	    command=lambda:os.system("python usuario.py")
+
 
 #Usuario
 usuario=tk.Label(ventana, text="USUARIO: ", bg="blue",fg="white").place(x=150,y=120)
