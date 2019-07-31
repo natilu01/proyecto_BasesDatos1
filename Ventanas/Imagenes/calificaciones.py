@@ -1,9 +1,13 @@
-#import pymysql
+import pymysql
 from tkinter import *
 from  tkinter import ttk
 import turtle
 import tkinter as tk
 import os
+from tkinter import messagebox
+
+
+
 
 ventana=tk.Tk()
 ventana.title("Calificaciones")
@@ -17,6 +21,9 @@ label.pack()
 
 #funcion para determinar que hace el boton
 def usuario():
+	print ("")
+
+def profesor():
 	varresult.set("suma="+str(float(vartxt1.get())+float(vartxt2.get())))
 def contraseña():
 	varresult.set("suma="+str(float(vartxt1.get())+float(vartxt2.get())))
@@ -36,16 +43,15 @@ vartxtContraseña=StringVar()
 txtContraseña=Entry(ventana,textvariable=vartxtContraseña).place(x=250,y=155)
 
 #perfil
-perfil=tk.Label(ventana, text="PERFIL: ", bg="blue",fg="white").place(x=150,y=190)
+#perfil=tk.Label(ventana, text="PERFIL: ", bg="blue",fg="white").place(x=150,y=190)
 #comboBox para seleccionar el estudiante o el profesor
-vartxtPerfil=StringVar()
-combo=ttk.Combobox(ventana)
-combo.place(x=250,y=190)
-combo ['values']=('ESTUDIANTE','PROFESOR')
-combo.current(0)
+#vartxtPerfil=StringVar()
+btProf=Button(ventana,text="ESTUDIANTE",padx=42,pady=5,background="#91F467", command=lambda:os.system("usuario.py")).place(x=100,y=225)
+btEst=Button(ventana,text="PRFESOR",padx=42,pady=5,background="#91F467", command=lambda:os.system("profesor.py")).place(x=100,y=275)
+
 
 #boton de ingreso
-bIngresar=Button(ventana,command=Ingresar,text="INGRESAR",padx=42,pady=5,background="#91F467").place(x=200,y=225)
+#bIngresar=Button(ventana,command=Ingresar,text="INGRESAR",padx=42,pady=5,background="#91F467").place(x=200,y=225)
 
 #image1=tk.PhotoImage(file="epn.gif")
 #image1=image1.subsample(1,1)
