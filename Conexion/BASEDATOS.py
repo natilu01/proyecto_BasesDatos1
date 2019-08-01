@@ -29,7 +29,7 @@ try:
 	conn.close
 	#print ("conectada")
 
-except:
+except: 
 
 		messagebox.showwarning("¡ATENCION!","NO EXISTE EL USUARIO")
 finally:

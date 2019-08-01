@@ -5,8 +5,6 @@ import turtle
 import tkinter as tk
 import os
 
-
-
 try:
 	conn = pymysql.connect(host='127.0.0.1',
 	                             user='root',
@@ -16,36 +14,29 @@ try:
 	                             cursorclass=pymysql.cursors.DictCursor)
 
 	cur=conn.cursor()
-	#cur.execute("DROP TABLE IF EXISTS profesor")
-
-	#sql="CREATE TABLE profesor ( nombre VARCHAR(30) NOT NULL , cedula VARCHAR(30) NOT NULL )"
-	sql="SELECT *  FROM profesores "
-	#sql="SELECT *  FROM profesores "
-	#mostrar en un label de tkinter concatenando con un +
-	#ingresar las notas
-	#con insert
-
-
+	sql="SELECT nombreProfesor,apellidoProfesor  FROM profesores "
+	
 	cur.execute(sql)
-	result= cur.fetchone()
-	print (result)
+	result= cur.fetchall()
+	
+	for row in result:
+		print ("Nombre y Apellido: %s, %s " % (row['nombreProfesor'],row['apellidoProfesor']))
+		
+		print("------------------------------------")
+		
 
 	cur.close()
 	conn.close
 	#print ("conectada")
 
-except:
-
-		messagebox.showwarning("¡ATENCION!","NO EXISTE EL USUARIO")
+except Exception as e:
+	raise
 finally:
 	conn.close
 
 
-
-
-
 ventana=tk.Tk()
-ventana.title("Calificaciones")
+ventana.title("Profesores")
 ventana.geometry('550x550')
 ventana.configure(background='white')
 
@@ -59,24 +50,14 @@ def usuario():
 	#vartxtUsuario.set("USUARIO: "+ )
 	print ("")
 def contraseña():
-	varresult.set("suma="+str(float(vartxt1.get())+float(vartxt2.get())))
+	print ("")
 def Ingresar():
-	varresult.set("suma="+str(float(vartxt1.get())+float(vartxt2.get())))
+	print ("")
+
+#boton de ingreso y regreso
+btEst=Button(ventana,text="ATRAS",padx=42,pady=5,background="#91F465", command=lambda:os.system("calificaciones.py")).place(x=100,y=275)
 
 
-
-#Usuario
-usuario=tk.Label(ventana, text="USUARIO: ", bg="blue",fg="white").place(x=150,y=120)
-vartxtUsuario=StringVar()
-txtUsuario=Entry(ventana,textvariable=vartxtUsuario).place(x=250,y=120)
-
-#contraseña
-contraseña=tk.Label(ventana, text="CONTRASEÑA: ", bg="blue",fg="white").place(x=150,y=155)
-vartxtContraseña=StringVar()
-txtContraseña=Entry(ventana,textvariable=vartxtContraseña).place(x=250,y=155)
-
-#boton de ingreso
-bIngresar=Button(ventana,command=Ingresar,text="INGRESAR",padx=42,pady=5,background="#91F467").place(x=200,y=190)
 
 
 ventana.mainloop()
